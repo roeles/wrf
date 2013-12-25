@@ -3,4 +3,4 @@ install:
 - sudo apt-get install perl bash csh m4 sed gawk gfortran netcdf-bin grads
 
 script:
-- make -j8
+- make 
