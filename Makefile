@@ -1,8 +1,16 @@
-all: download
+all: 
 	echo All	
 
 download: wrf.tar.gz wps.tar.gz wrfda.tar.gz wrf_chem.tar.gz
 	echo Download
+
+WRFV3-compile: wrf.tar.gz-untargz
+	cd WRFV3
+	./configure
+	./compile wrf
+
+%.tar.gz-untargz: %.tar.gz
+	tar -xvvzf $<
 
 wrf.tar.gz:
 	wget -O $@ http://www.mmm.ucar.edu/wrf/src/WRFV3.5.1.TAR.gz
