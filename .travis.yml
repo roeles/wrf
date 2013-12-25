@@ -1,6 +1,6 @@
 install:
 - sudo apt-get update
-- sudo apt-get install perl bash csh m4 sed gawk gfortan netcdf-bin mpich grads
+- sudo apt-get install perl bash csh m4 sed gawk gfortan netcdf-bin grads
 
 script:
 - make -j8
