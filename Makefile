@@ -1,4 +1,4 @@
-all: 
+all:  WRFV3-compile
 	echo All	
 
 download: wrf.tar.gz wps.tar.gz wrfda.tar.gz wrf_chem.tar.gz
