@@ -1,6 +1,6 @@
 install:
 - sudo apt-get update
-- sudo apt-get install perl bash csh m4 sed awk gfortan
+- sudo apt-get install perl bash csh m4 sed awk gfortan netcdf-bin
 
 script:
 - make -j8
