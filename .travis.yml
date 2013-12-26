@@ -1,6 +1,6 @@
 install:
 - sudo apt-get update
-- sudo apt-get install perl bash csh m4 sed gawk gfortran netcdf-bin grads
+- sudo apt-get install perl bash csh m4 sed gawk gfortran netcdf-bin grads libnetcdf-dev
 
 script:
 - make wrf.tar.gz-untargz
