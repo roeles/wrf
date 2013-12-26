@@ -4,8 +4,8 @@ all:  WPSV3-compile
 download: wrf.tar.gz wps.tar.gz wrfda.tar.gz wrf_chem.tar.gz
 	echo Download
 
-WPSV3-compile: WRFV3-compile wps.tar.gz-untargz
-	cd WPS && csh ./compile wps
+WPSV3-compile: WRFV3-compile wps.tar.gz-untargz wrf-configure.input
+	cd WPS && csh ./configure < ../wrf-configure.input && csh ./compile wps
 
 WRFV3-compile: wrf.tar.gz-untargz
 	cd WRFV3 && csh ./compile -j 8 wrf
