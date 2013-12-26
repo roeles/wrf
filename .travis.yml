@@ -5,3 +5,4 @@ install:
 script:
 - make wrf.tar.gz-untargz
 - make WRFV3-compile
+- make WPSV3-compile
