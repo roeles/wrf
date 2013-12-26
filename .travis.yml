@@ -3,4 +3,5 @@ install:
 - sudo apt-get install perl bash csh m4 sed gawk gfortran netcdf-bin grads
 
 script:
-- make 
+- make wrf.tar.gz-untargz
+- make WRFV3-compile
