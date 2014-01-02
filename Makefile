@@ -1,3 +1,7 @@
+#TODO: modify configure.wrf for WRF, add optimizer options  -O3 -ffast-math -march=native -funroll-loops -fno-protect-parens -flto
+#TODO: strip binaries wrf.exe real.exe
+
+
 all:  WPSV3-compile
 	echo All	
 
