@@ -26,3 +26,6 @@ wrfda.tar.gz:
 
 wrf_chem.tar.gz:
 	wget -O $@ http://www.mmm.ucar.edu/wrf/src/WRFV3-Chem-3.5.1.TAR.gz
+
+geog.tar.gz:
+	wget -O $@ http://www.mmm.ucar.edu/wrf/src/wps_files/geog_v3.4.tar.gz
