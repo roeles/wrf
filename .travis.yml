@@ -1,6 +1,6 @@
 install:
 - sudo apt-get update
-- sudo apt-get install perl bash csh m4 sed gawk gfortran netcdf-bin grads libnetcdf-dev libjasper-dev libopenmpi-dev libgomp1
+- sudo apt-get install perl bash csh m4 sed gawk gfortran netcdf-bin grads libnetcdf-dev libjasper-dev libmpich2-dev
 
 script:
 - make wrf.tar.gz-untargz
