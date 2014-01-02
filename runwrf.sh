@@ -36,6 +36,7 @@ GFSDATA=$YEAR$MONTH$DAY
 #  exit 1
 #fi
 
+date
 # ===============================================================
 # Start WPS routine
 # ===============================================================
@@ -94,10 +95,12 @@ sed -i -e "s/\(end_day\).*/\1 = $WRFENDDAY/g" namelist.input
 # start routines
 ln -s ../../WPS/met_em* .
 echo '    running real & WRF'
-./real.exe 
+mpirun -n 8 ./real.exe 
 echo '    running wrf.....'
-./wrf.exe
+mpirun -n 8 ./wrf.exe
 #sbatch runles.slurm
+
+date
 
 exit 
 
