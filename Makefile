@@ -10,7 +10,7 @@ WPSV3-compile: WRFV3-compile wps.tar.gz-untargz wrf-configure.input
 	cd WPS && csh ./compile wps
 
 WRFV3-compile: wrf.tar.gz-untargz
-	cd WRFV3 && bash ./configure < ../wrf-configure.input && csh ./compile -j 8 wrf
+	cd WRFV3 && bash ./configure < ../wrf-configure.input && csh ./compile -j 8 em_real
 
 %.tar.gz-untargz: %.tar.gz
 	tar -xvvzf $<
