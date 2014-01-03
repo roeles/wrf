@@ -5,6 +5,9 @@ all:  WPS/ungrib.exe
 	echo All	
 
 
+GFS/%:
+	mkdir -p `dirname $@` && \
+	wget -O $@ http://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.`echo $@ | sed -e 's/GFS\///' `
 
 WPS/configure: wps.tar.gz
 	tar -xzf $< && \
