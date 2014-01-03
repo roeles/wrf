@@ -2,18 +2,13 @@
 #TODO: strip binaries wrf.exe real.exe
 
 
-all:  WPSV3-compile
+all:  WPS-compile
 	echo All	
 
-download: wrf.tar.gz wps.tar.gz wrfda.tar.gz wrf_chem.tar.gz
-	echo Download
-
-untargz: wrf.tar.gz-untargz wps.tar.gz-untargz wrfda.tar.gz-untargz wrf_chem.tar.gz-untargz-untargz
-
-WPSV3-compile: WRFV3-compile wps.tar.gz-untargz wrf-configure.input
+WPS-compile: WRFV3-compile wps.tar.gz-untargz wps-configure.input
 	cd WPS && csh ./compile wps
 
-WRFV3-compile: wrf.tar.gz-untargz
+WRFV3-compile: wrf.tar.gz-untargz wrf-configure.input
 	cd WRFV3 && bash ./configure < ../wrf-configure.input && csh ./compile -j 8 em_real
 
 %.tar.gz-untargz: %.tar.gz
@@ -24,12 +19,6 @@ wrf.tar.gz:
 
 wps.tar.gz:
 	wget -O $@ http://www.mmm.ucar.edu/wrf/src/WPSV3.5.1.TAR.gz
-
-wrfda.tar.gz:
-	wget -O $@ http://www.mmm.ucar.edu/wrf/src/WRFDA_V3.5.1.tar.gz
-
-wrf_chem.tar.gz:
-	wget -O $@ http://www.mmm.ucar.edu/wrf/src/WRFV3-Chem-3.5.1.TAR.gz
 
 geog.tar.gz:
 	wget -O $@ http://www.mmm.ucar.edu/wrf/src/wps_files/geog_v3.4.tar.gz
