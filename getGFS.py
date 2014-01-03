@@ -1,4 +1,3 @@
-import numpy as np
 import os
 import urllib
 
@@ -27,7 +26,8 @@ for t in range(nt):
           'z.pgrb2f'+\
           str(tact).zfill(2)
   url = loc + '/' + fil
- 
+
+  print "'" + str(url) + "' -> '" + dirout + "/" + fil + "'"
   urllib.urlretrieve (url,dirout+'/'+fil)
  
    
