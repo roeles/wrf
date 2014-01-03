@@ -9,22 +9,28 @@ t0 = 0
 t1 = 24
 dt = 3
 
-dirout = str(year)+str(month).zfill(2)+str(day).zfill(2)
+str_year = str(year)
+str_month = str(month).zfill(2)
+str_day = str(day).zfill(2)
+str_tforcast = str(tforcast).zfill(2)
+
+dirout = str_year + str_month + str_day
 if not os.path.exists(dirout):
   os.mkdir(dirout)
 
 nt = (t1-t0)/dt+1
 for t in range(nt):
   tact = t0 + t * dt
+  str_tact = str(tact).zfill(2)
   loc = 'http://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.'+\
-          str(year)+\
-          str(month).zfill(2)+\
-          str(day).zfill(2)+\
-          str(tforcast).zfill(2)
+          str_year + \
+          str_month + \
+          str_day + \
+          str_tforcast
   fil = 'gfs.t'+\
-          str(tforcast).zfill(2)+\
-          'z.pgrb2f'+\
-          str(tact).zfill(2)
+          str_tforcast + \
+          'z.pgrb2f'+ \
+          str_tact
   url = loc + '/' + fil
 
   print "'" + str(url) + "' -> '" + dirout + "/" + fil + "'"
