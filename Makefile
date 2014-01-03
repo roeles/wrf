@@ -25,7 +25,7 @@ WRFV3/configure: wrf.tar.gz-untargz
 
 WRFV3/configure.wrf: WRFV3/configure wrf-configure.input
 	(cd WRFV3 && \
-	bash ./configure < ../wrf-configure.input
+	bash ./configure < ../wrf-configure.input && \
 	sed -i -e 's/-O2 -ftree-vectorize -funroll-loops/-O3 -ffast-math -march=native -funroll-loops -fno-protect-parens -flto/' configure.wrf && \
 	sed -i -e 's/FORMAT_FIXED    =       /FORMAT_FIXED    =       -cpp /' configure.wrf && \
 	sed -i -e 's/FORMAT_FREE     =       /FORMAT_FREE     =       -cpp /' configure.wrf && \
