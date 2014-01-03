@@ -9,10 +9,24 @@ WPS-compile: WRFV3-compile wps.tar.gz-untargz wps-configure.input
 	bash ./configure < ../wps-configure.input && \
 	csh ./compile wps)
 
-WRFV3-compile: wrf.tar.gz-untargz wrf-configure.input
+
+#Compilation of WRFV3
+WRFV3/configure: wrf.tar.gz-untargz
+
+WRFV3/configure.wrf: WRFV3/configure wrf-configure.input
 	(cd WRFV3 && \
-	bash ./configure < ../wrf-configure.input && \
-	csh ./compile em_real &&
+	bash ./configure < ../wrf-configure.input)
+
+WRFV3-configure-patch: WRFV3/configure.wrf
+	(cd WRFV3 && \
+	sed -i -e 's/-O2 -ftree-vectorize -funroll-loops/-O3 -ffast-math -march=native -funroll-loops -fno-protect-parens -flto/' configure.wrf && \
+	sed -i -e 's/FORMAT_FIXED    =       /FORMAT_FIXED    =       -cpp /' configure.wrf && \
+	sed -i -e 's/FORMAT_FREE     =       /FORMAT_FREE     =       -cpp /' configure.wrf && \
+	sed -i -e 's/FCNOOPT         =       -O0/-O3 -ffast-math -march=native -funroll-loops -fno-protect-parens -flto -cpp/' configure.wrf)
+
+WRFV3/main/wrf.exe WRFV3/main/real.exe: WRFV3-configure-patch
+	(cd WRFV3 && \
+	csh ./compile em_real && \
 	strip main/wrf.exe main/real.exe)
 
 
