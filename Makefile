@@ -1,7 +1,7 @@
 #TODO: modify configure.wrf for WRF, add optimizer options  -O3 -ffast-math -march=native -funroll-loops -fno-protect-parens -flto
 #TODO: modify configure.wrf to make stuff compile with the -cpp flag
 
-all:  WPS-compile
+all:  WRFV3/main/wrf.exe
 	echo All	
 
 WPS-compile: WRFV3-compile wps.tar.gz-untargz wps-configure.input
