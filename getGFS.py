@@ -1,7 +1,9 @@
 import datetime
+import sys
 
 timestamp = datetime.datetime.now()
 if len(sys.argv) > 3:
+	pass 
 
 year = 2014
 month = 1
@@ -28,7 +30,7 @@ for t in range(nt):
           str_tforcast + \
           'z.pgrb2f'+ \
           str_tact
-  url = loc + '/' + fil
+  url = "GFS/" + loc + '/' + fil
 
   print url,
    
