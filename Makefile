@@ -7,13 +7,13 @@ all:  WPS/ungrib.exe
 
 
 WPS/configure: wps.tar.gz
-	tar -xzf $<
+	tar -xzf $< && \
 	touch $@
 
-WPS/configure.wps: WPS/configure wps-configure.input
+WPS/configure.wps: WPS/configure wps-configure.input WRFV3/main/wrf.exe
 	(cd WPS && \
 	bash ./configure < ../wps-configure.input && \
-	sed -i -e 's/-O -fconvert=big-endian -frecord-marker=4/-O -fconvert=big-endian -frecord-marker=4 -cpp/' configure.wps) &&
+	sed -i -e 's/-O -fconvert=big-endian -frecord-marker=4/-O -fconvert=big-endian -frecord-marker=4 -cpp/' configure.wps) && \
 	touch $@
 
 WPS/geogrid.exe WPS/ungrib.exe WPS/metgrid.exe: WPS/configure.wps WRFV3/main/wrf.exe
@@ -32,7 +32,7 @@ WRFV3/configure.wrf: WRFV3/configure wrf-configure.input
 	sed -i -e 's/-O2 -ftree-vectorize -funroll-loops/-O3 -ffast-math -march=native -funroll-loops -fno-protect-parens -flto/' configure.wrf && \
 	sed -i -e 's/FORMAT_FIXED    =       /FORMAT_FIXED    =       -cpp /' configure.wrf && \
 	sed -i -e 's/FORMAT_FREE     =       /FORMAT_FREE     =       -cpp /' configure.wrf && \
-	sed -i -e 's/FCNOOPT         =       -O0/-O3 -ffast-math -march=native -funroll-loops -fno-protect-parens -flto -cpp/' configure.wrf) &&
+	sed -i -e 's/FCNOOPT         =       -O0/-O3 -ffast-math -march=native -funroll-loops -fno-protect-parens -flto -cpp/' configure.wrf) && \
 	touch $@
 
 WRFV3/main/wrf.exe WRFV3/main/real.exe: WRFV3/configure.wrf
