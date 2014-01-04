@@ -24,6 +24,10 @@ WPS/geogrid.exe WPS/ungrib.exe WPS/metgrid.exe: WPS/configure.wps WRFV3/main/wrf
 	csh ./compile && \
 	strip geogrid.exe ungrib.exe metgrid.exe)
 
+WPS/namelist.wps: namelist.wps
+	cp $< $@
+	touch $@
+
 #Compilation of WRFV3
 WRFV3/configure: wrf.tar.gz
 	tar -xzf $<
@@ -43,7 +47,11 @@ WRFV3/main/wrf.exe WRFV3/main/real.exe: WRFV3/configure.wrf
 	csh ./compile em_real && \
 	strip main/wrf.exe main/real.exe)
 
+WRFV3/run/namelist.input: namelist.input
+	cp $< $@
+	touch $@
 
+#Archives
 wrf.tar.gz:
 	wget -O $@ http://www.mmm.ucar.edu/wrf/src/WRFV3.5.1.TAR.gz
 
