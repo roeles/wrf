@@ -1,4 +1,4 @@
-WRFPATH=/scratch/mpi/mpiaes/m300241/WRFnl
+WRFPATH=/home/wrf/wrf
 
 # start and end dates
 # AUTO SELECTION
