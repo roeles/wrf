@@ -23,7 +23,7 @@
  truelat1  =  52.0,
  truelat2  =  52.0,
  stand_lon =  5.5,
- geog_data_path = '../GEOFILES'
+ geog_data_path = '../geog'
 /
 
 &ungrib

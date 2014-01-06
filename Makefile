@@ -4,7 +4,6 @@
 all:  WPS/ungrib.exe
 	echo All	
 
-
 GFS/%:
 	mkdir -p `dirname $@` && \
 	wget -O $@ http://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.`echo $@ | sed -e 's/GFS\///' `
@@ -22,6 +21,7 @@ WPS/configure.wps: WPS/configure wps-configure.input WRFV3/main/wrf.exe
 WPS/geogrid.exe WPS/ungrib.exe WPS/metgrid.exe: WPS/configure.wps WRFV3/main/wrf.exe
 	(cd WPS && \
 	csh ./compile && \
+	rm namelist.wps && \
 	strip geogrid.exe ungrib.exe metgrid.exe)
 
 WPS/namelist.wps: namelist.wps
@@ -58,5 +58,5 @@ wrf.tar.gz:
 wps.tar.gz:
 	wget -O $@ http://www.mmm.ucar.edu/wrf/src/WPSV3.5.1.TAR.gz
 
-geog.tar.gz:
+geog/%:
 	wget -O $@ http://www.mmm.ucar.edu/wrf/src/wps_files/geog_v3.4.tar.gz
