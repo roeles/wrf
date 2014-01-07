@@ -10,14 +10,17 @@ run/%/namelist.wps: namelist.wps
 run/%/geogrid: WPS/geogrid
 	ln -s ../../$< $@
 
-run/%/geo_em.d01.nc run/%/geo_em.d01.nc: WPS/geogrid.exe run/%/geogrid run/%/namelist.wps
+run/%/geo_em.d01.nc run/%/geo_em.d02.nc: WPS/geogrid.exe run/%/geogrid run/%/namelist.wps
 	(cd `dirname $@` && \
 	../../WPS/geogrid.exe)
 
-run/%:
+run/gfs/%.grib:
 	mkdir -p `dirname $@` && \
-	wget -O $@ http://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.`echo $@ | sed -e 's/run\///' `
+	wget -O $@ `python getGFS.py $@`
 
+run/%/grib/GRIBFILE.AAA: WPS/link_grib.csh run/gfs/%/00.grib run/gfs/%/03.grib run/gfs/%/06.grib run/gfs/%/09.grib run/gfs/%/12.grib run/gfs/%/15.grib run/gfs/%/18.grib run/gfs/%/21.grib run/gfs/%/24.grib
+	(cd `dirname $@` &&
+	csh ../../../$<)
 
 #Building WPS
 WPS/configure: wps.tar.gz

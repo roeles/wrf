@@ -1,6 +1,8 @@
 import datetime
 import sys
 
+#http://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.2014010100/gfs.t00z.pgrb2f00
+
 timestamp = datetime.datetime.now()
 if len(sys.argv) > 3:
 	pass 
@@ -12,7 +14,7 @@ tforcast = 0
 t0 = 0
 t1 = 24
 dt = 3
-root = "run"
+root = "run/gfs"
 
 
 str_year = str(year)
