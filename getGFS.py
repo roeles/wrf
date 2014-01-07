@@ -12,6 +12,8 @@ tforcast = 0
 t0 = 0
 t1 = 24
 dt = 3
+root = "run"
+
 
 str_year = str(year)
 str_month = str(month).zfill(2)
@@ -30,7 +32,7 @@ for t in range(nt):
           str_tforcast + \
           'z.pgrb2f'+ \
           str_tact
-  url = "GFS/" + loc + '/' + fil
+  url = root + "/" + loc + '/' + fil
 
   print url,
    

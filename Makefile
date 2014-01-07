@@ -4,10 +4,19 @@
 all:  WPS/ungrib.exe
 	echo All	
 
-GFS/%:
-	mkdir -p `dirname $@` && \
-	wget -O $@ http://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.`echo $@ | sed -e 's/GFS\///' `
+#To actually run a simulation
+run/%/namelist.wps: namelist.wps
+	cp $< $@ && \
 
+run/%/geogrid: WPS/geogrid
+	ln -s ../../$< $@
+
+run/%:
+	mkdir -p `dirname $@` && \
+	wget -O $@ http://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.`echo $@ | sed -e 's/run\///' `
+
+
+#Building WPS
 WPS/configure: wps.tar.gz
 	tar -xzf $< && \
 	touch $@
@@ -24,9 +33,6 @@ WPS/geogrid.exe WPS/ungrib.exe WPS/metgrid.exe: WPS/configure.wps WRFV3/main/wrf
 	rm namelist.wps && \
 	strip geogrid.exe ungrib.exe metgrid.exe)
 
-WPS/namelist.wps: namelist.wps
-	cp $< $@
-	touch $@
 
 #Compilation of WRFV3
 WRFV3/configure: wrf.tar.gz
