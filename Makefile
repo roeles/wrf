@@ -14,11 +14,12 @@ run/%/geo_em.d01.nc run/%/geo_em.d02.nc: WPS/geogrid.exe run/%/geogrid run/%/nam
 	(cd `dirname $@` && \
 	../../WPS/geogrid.exe)
 
-run/gfs/%.grib:
+#http://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.2014010100/gfs.t00z.pgrb2f00
+run/gfs/%:
 	mkdir -p `dirname $@` && \
-	wget -O $@ `python getGFS.py $@`
+	wget -O $@ http://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.$@
 
-run/%/grib/GRIBFILE.AAA: WPS/link_grib.csh run/gfs/%/00.grib run/gfs/%/03.grib run/gfs/%/06.grib run/gfs/%/09.grib run/gfs/%/12.grib run/gfs/%/15.grib run/gfs/%/18.grib run/gfs/%/21.grib run/gfs/%/24.grib
+run/%/grib/GRIBFILE.AAA: WPS/link_grib.csh run/gfs/%/gfs.t00z.pgrb2f00 run/gfs/%/gfs.t00z.pgrb2f03 run/gfs/%/gfs.t00z.pgrb2f06 run/gfs/%/gfs.t00z.pgrb2f09 run/gfs/%/gfs.t00z.pgrb2f12 run/gfs/%/gfs.t00z.pgrb2f15 run/gfs/%/gfs.t00z.pgrb2f18 run/gfs/%/gfs.t00z.pgrb2f21 run/gfs/%/gfs.t00z.pgrb2f24
 	(cd `dirname $@` &&
 	csh ../../../$<)
 
