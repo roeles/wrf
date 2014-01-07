@@ -27,6 +27,7 @@ run/%/GRIBFILE.AAA: $(CURDIR)/WPS/link_grib.csh $(CURDIR)/run/gfs/%/gfs.t00z.pgr
 run/%/Vtable: $(CURDIR)/WPS/ungrib/Variable_Tables/Vtable.GFS
 	ln -s $< $@
 
+#TODO: hoe doe je dit algemener?
 run/%/FILE\:2014-01-01_00: run/%/Vtable WPS/ungrib.exe run/%/GRIBFILE.AAA
 	(cd `dirname $@` && \
 	ungrib.exe)
@@ -35,6 +36,7 @@ run/%/metgrid: WPS/metgrid
 	ln -s $(CURDIR)/$< $@
 
 
+#TODO: ook algemener
 run/%/met_em.d01.2014-01-01_00\:00\:00.nc: WPS/metgrid.exe run/%/metgrid
 	(cd `dirname $@` && \
 	$(CURDIR)/$<)
