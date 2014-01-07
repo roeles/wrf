@@ -5,11 +5,16 @@ all:  WPS/ungrib.exe
 	echo All	
 
 #To actually run a simulation
+
 run/%/namelist.wps: namelist.wps
 	cp $< $@ && \
 
 run/%/geogrid: WPS/geogrid
 	ln -s ../../$< $@
+
+run/%/geo_em.d01.nc run/%/geo_em.d01.nc: WPS/geogrid.exe run/%/geogrid run/%/namelist.wps
+	(cd `dirname $@` && \
+	../../WPS/geogrid.exe)
 
 run/%:
 	mkdir -p `dirname $@` && \
