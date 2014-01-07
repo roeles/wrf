@@ -1,13 +1,11 @@
-#TODO: modify configure.wrf for WRF, add optimizer options  -O3 -ffast-math -march=native -funroll-loops -fno-protect-parens -flto
-#TODO: modify configure.wrf to make stuff compile with the -cpp flag
-
 all:  WPS/ungrib.exe
 	echo All	
 
 #To actually run a simulation
 
+#TODO: do sed magic to search-replace on start_date en end_date. How to extract those values from % ?
 run/%/namelist.wps: namelist.wps
-	cp $< $@ && \
+	cp $< $@ 
 
 run/%/geogrid: WPS/geogrid
 	ln -s ../../$< $@
