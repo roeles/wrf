@@ -1,3 +1,6 @@
+#TODO: make native date-format 2014-01-01_00 or so, and remove -_ when needed (downloading)
+#TODO: consistently rename files with : to the same file containing | or something else make can handle. Or maybe remove the date in the filename completely if make needs that?
+
 all:  WPS/ungrib.exe
 	echo All	
 
