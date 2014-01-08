@@ -39,7 +39,7 @@
  max_step_increase_pct = 5, 51,
  starting_time_step = 50
 
- max_dom                             = 1,
+ max_dom                             = 2,
  e_we                                = 100,    121,
  e_sn                                = 100,    121,
  e_vert                              = 64,     64,
