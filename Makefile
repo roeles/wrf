@@ -28,7 +28,7 @@ run/%/Vtable: $(CURDIR)/WPS/ungrib/Variable_Tables/Vtable.GFS
 	ln -s $< $@
 
 #TODO: hoe doe je dit algemener?
-run/%/FILE\:2014-01-01_00: run/%/Vtable WPS/ungrib.exe run/%/GRIBFILE.AAA
+run/%/FILE\:2014-01-01_00: run/%/Vtable WPS/ungrib.exe run/%/GRIBFILE.AAA run/%/namelist.wps
 	(cd `dirname $@` && \
 	ungrib.exe)
 
@@ -37,7 +37,7 @@ run/%/metgrid: WPS/metgrid
 
 
 #TODO: ook algemener
-run/%/met_em.d01.2014-01-01_00\:00\:00.nc: WPS/metgrid.exe run/%/metgrid
+run/%/met_em.d01.2014-01-01_00\:00\:00.nc: WPS/metgrid.exe run/%/metgrid run/%/namelist.wps
 	(cd `dirname $@` && \
 	$(CURDIR)/$<)
 
