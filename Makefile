@@ -90,10 +90,10 @@ geog/%: geog.tar.gz
 
 #Archives
 wrf.tar.gz:
-	wget -O $@ http://www.mmm.ucar.edu/wrf/src/WRFV3.5.1.TAR.gz
+	wget -O $@ http://www2.mmm.ucar.edu/wrf/src/WRFV3.5.1.TAR.gz
 
 wps.tar.gz:
-	wget -O $@ http://www.mmm.ucar.edu/wrf/src/WPSV3.5.1.TAR.gz
+	wget -O $@ http://www2.mmm.ucar.edu/wrf/src/WPSV3.5.1.TAR.gz
 
 geog.tar.gz:
-	wget -O $@ http://www.mmm.ucar.edu/wrf/src/wps_files/geog_v3.4.tar.gz
+	wget -O $@ http://www2.mmm.ucar.edu/wrf/src/wps_files/geog_v3.4.tar.gz
