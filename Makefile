@@ -50,13 +50,13 @@ WPS/configure WPS/geogrid WPS/metgrid WPS/ungrib/Variable_Tables/Vtable.GFS: wps
 	tar -xzf $< && \
 	touch $@
 
-WPS/configure.wps: WPS/configure wps-configure.input WRFV3/main/wrf.exe
+WPS/configure.wps: WPS/configure wps-configure.input WRFV3/run/wrf.exe
 	(cd WPS && \
 	bash ./configure < ../wps-configure.input && \
 	sed -i -e 's/-O -fconvert=big-endian -frecord-marker=4/-O -fconvert=big-endian -frecord-marker=4 -cpp/' configure.wps) && \
 	touch $@
 
-WPS/geogrid.exe WPS/ungrib.exe WPS/metgrid.exe: WPS/configure.wps WRFV3/main/wrf.exe
+WPS/geogrid.exe WPS/ungrib.exe WPS/metgrid.exe: WPS/configure.wps WRFV3/run/wrf.exe
 	(cd WPS && \
 	csh ./compile && \
 	rm namelist.wps)
@@ -76,10 +76,10 @@ WRFV3/configure.wrf: WRFV3/configure wrf-configure.input
 	sed -i -e 's/FCNOOPT         =       -O0/-O3 -ffast-math -march=native -funroll-loops -fno-protect-parens -flto -cpp/' configure.wrf) && \
 	touch $@
 
-WRFV3/main/wrf.exe WRFV3/main/real.exe: WRFV3/configure.wrf
+WRFV3/run/wrf.exe WRFV3/run/real.exe: WRFV3/configure.wrf
 	(cd WRFV3 && \
-	csh ./compile em_real && \
-	strip main/wrf.exe main/real.exe)
+	csh ./compile em_real)
+	#strip run/wrf.exe run/real.exe)
 
 WRFV3/run/namelist.input: namelist.input
 	cp $< $@
