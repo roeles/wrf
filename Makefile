@@ -59,8 +59,8 @@ WPS/configure.wps: WPS/configure wps-configure.input WRFV3/main/wrf.exe
 WPS/geogrid.exe WPS/ungrib.exe WPS/metgrid.exe: WPS/configure.wps WRFV3/main/wrf.exe
 	(cd WPS && \
 	csh ./compile && \
-	rm namelist.wps && \
-	strip geogrid.exe ungrib.exe metgrid.exe)
+	rm namelist.wps)
+	#strip geogrid.exe ungrib.exe metgrid.exe)
 
 #Compilation of WRFV3
 WRFV3/configure: wrf.tar.gz
@@ -90,10 +90,10 @@ geog/%: geog.tar.gz
 
 #Archives
 wrf.tar.gz:
-	wget -O $@ http://www2.mmm.ucar.edu/wrf/src/WRFV3.5.1.TAR.gz
+	wget -O $@ http://www2.mmm.ucar.edu/wrf/src/WRFV3.6.1.TAR.gz
 
 wps.tar.gz:
-	wget -O $@ http://www2.mmm.ucar.edu/wrf/src/WPSV3.5.1.TAR.gz
+	wget -O $@ http://www2.mmm.ucar.edu/wrf/src/WPSV3.6.1.TAR.gz
 
 geog.tar.gz:
 	wget -O $@ http://www2.mmm.ucar.edu/wrf/src/wps_files/geog_v3.4.tar.gz
