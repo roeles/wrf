@@ -76,7 +76,7 @@ WRFV3/configure.wrf: WRFV3/configure wrf-configure.input
 
 WRFV3/run/wrf.exe WRFV3/run/real.exe: WRFV3/configure.wrf
 	(cd WRFV3 && \
-	csh ./compile em_real)
+	csh ./compile -j 8 em_real)
 	#strip run/wrf.exe run/real.exe)
 
 WRFV3/run/namelist.input: namelist.input
