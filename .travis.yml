@@ -1,6 +1,24 @@
-install:
-- sudo apt-get update
-- sudo apt-get install perl bash csh m4 sed gawk gfortran netcdf-bin grads libnetcdf-dev libjasper-dev libmpich2-dev libpng-dev libz-dev
+dist: trusty
+language: fortran
+
+
+addons:
+  apt:
+    packages:
+      - perl
+      - bash
+      - csh
+      - m4
+      - sed
+      - gawk
+      - gfortran
+      - netcdf-bin
+      - grads
+      - libnetcdf-dev
+      - libjasper-dev
+      - libmpich2-dev
+      - libpng-dev
+      - libz-dev
 
 script:
 - make 
